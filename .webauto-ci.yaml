@@ -8,6 +8,7 @@ artifacts:
 simulations:
   - name: lexus_planning_sim
     type: planning_sim_v2
+    scenario_parameter_group: common # Necessary to define the name for each vehicle type
     simulator:
       deployment:
         type: container
