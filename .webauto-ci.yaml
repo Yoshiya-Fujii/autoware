@@ -1,9 +1,6 @@
 version: 2
 
 artifacts:
-#  - name: main
-#    build:
-#      type: tier4/universe/main/amd64/v1
   - name: main
     metadata:
       play-ondemand.ci.web.auto/buildspec: Autoware-Humble
@@ -18,7 +15,6 @@ artifacts:
             - simulator.repos
           import_path: src
       environment_variables:
-#       AUTOWARE_PATH: /home/autoware/pilot-auto.xx1
         AUTOWARE_PATH: /home/autoware/autoware.proj
         ML_MODELS_PATH: /opt/autoware/mlmodels
         DEBIAN_FRONTEND: noninteractive
@@ -78,10 +74,8 @@ artifacts:
           exec: ./.webauto-ci/main/asset-deploy/run.sh
           ml_packages:
             - name: pointpainting
-#             release: xx1/mlmodel/v0.1.3
               release: demo/mlmodel/v0.0.3
             - name: centerpoint
-#             release: xx1/mlmodel/v0.1.1
               release: demo/mlmodel/v0.0.3
         - name: ecu-system-setup
           user: autoware
@@ -103,12 +97,10 @@ artifacts:
         # from: ghcr.io/tier4/pilot-auto/base-image:latest # use base image
       output_container_image:
         from: ecu-system-setup
-#       workdir: /home/autoware/pilot-auto.xx1
         workdir: /home/autoware/autoware.proj        
         user: autoware
       output_rootfs_image:
         from: ecu-system-setup
-#       persistent_file_path: /home/autoware/pilot-auto.xx1/.webauto-ci/main/ecu-system-setup/persistents.txt
         persistent_file_path: /home/autoware/autoware.proj/.webauto-ci/main/ecu-system-setup/persistents.txt       
       output_installer_image:
         from: ecu-system-setup
@@ -142,7 +134,7 @@ simulations:
         artifact: main
       runtime:
         type: standard1/amd64/large
-- name: obstacle_segmentation
+  - name: obstacle_segmentation
     type: obstacle_segmentation
     simulator:
       deployment:
