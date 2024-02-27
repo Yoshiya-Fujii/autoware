@@ -80,7 +80,7 @@ artifacts:
           exec: ./.webauto-ci/main/ecu-system-setup/run.sh
           environment_variables:
             ECU_SYSTEM_SETUP_SOURCE_PATH: src/ecu_system_setup
-            ECU_SYSTEM_SETUP_ANSIBLE_PLAYBOOK: src/ecu_system_setup/xx1.yaml
+            ECU_SYSTEM_SETUP_ANSIBLE_PLAYBOOK: src/ecu_system_setup/common.yaml
           caches:
             - name: apt-lists
               mountpoint: /var/lib/apt/lists
@@ -105,7 +105,7 @@ artifacts:
         type: iso
         base_iso: ubuntu-20.04.3-live-server-amd64
 simulations:
-  - name: lexus_planning_sim
+  - name: planning_sim_v2
     type: planning_sim_v2
     scenario_parameter_group: common # Necessary to define the name for each vehicle type
     simulator:
@@ -113,7 +113,7 @@ simulations:
         type: container
         artifact: main
       runtime:
-        type: simulator/standard1/amd64/medium
+        type: standard1/amd64/medium
         cpu: 8
         memory: 16384
       parameters:
@@ -186,6 +186,7 @@ scenario_parameter_groups:
       left_overhang: 0.128 # between left wheel center and vehicle left
       right_overhang: 0.128 # between right wheel center and vehicle right
       max_steer_angle: 0.70 # [rad]
+      stop_line_distance: 0.0 # param name in autoware_launch: stop_margin
       blind_spot_stop_line_distance: 1.0 # param name in autoware_launch: stop_line_margin
       obstacle_stop_line_distance: 5.0 # param name in autoware_launch: max_longitudinal_margin
       crosswalk_stop_line_distance: 3.5 # param name in autoware_launch: stop_distance_from_crosswalk
