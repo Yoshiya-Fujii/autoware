@@ -73,9 +73,7 @@ artifacts:
           user: autoware
           exec: ./.webauto-ci/main/asset-deploy/run.sh
           ml_packages:
-            - name: pointpainting
-              release: demo/mlmodel/v0.0.3
-            - name: centerpoint
+            - name: centerpoint_tiny
               release: demo/mlmodel/v0.0.3
         - name: ecu-system-setup
           user: autoware
