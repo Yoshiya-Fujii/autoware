@@ -118,11 +118,11 @@ simulations:
         memory: 16384
       parameters:
         launch_autoware: "true"
+        vehicle_model: sample_vehicle
+        sensor_model: sample_sensor_kit
         autoware_launch_package: autoware_launch
         autoware_launch_file: planning_simulator.launch.xml
         architecture_type: awf/universe/20230906
-        vehicle_model: sample_vehicle
-        sensor_model: sample_sensor_kit
         initialize_duration: "90"
   - name: localization
     type: localization
@@ -156,16 +156,6 @@ simulations:
         - name: model
           path: /home/autoware/autoware_data/lidar_centerpoint
           preserve_original_files: true        
-release:
-  components:
-    - name: planning
-      deployment:
-        type: container
-        artifact: main
-    - name: perception
-      deployment:
-        type: container
-        artifact: main
 
 scenario_parameter_groups:
   # Necessary to update the parameters for each vehicle type
@@ -193,3 +183,4 @@ scenario_parameter_groups:
       walkway_stop_line_distance: 3.5 # param name in autoware_launch: stop_distance_from_crosswalk
       intersection_stop_line_distance: 3.0 # param name in autoware_launch: stop_line_margin
       traffic_light_stop_line_distance: 0.0 # param name in autoware_launch: stop_margin
+      run_out_stop_line_distance: 2.5 # param name in autoware_launch: stop_margin
